@@ -10,7 +10,7 @@ public class Assembler {
                 file = new File("C:\\Users\\qq227\\Desktop\\program1.txt");
                 break;
             case 2:
-                file = new File("C:\\Users\\qq227\\Desktop\\program2.txt");
+                file = new File("C:\\Users\\zhz049\\Desktop\\CSE-141L\\program2_no_label.txt");
                 break;
             case 3:
                 file = new File("C:\\Users\\qq227\\Desktop\\program3.txt");
@@ -118,19 +118,19 @@ public class Assembler {
     }
 
     public static void main(String[] args) throws Exception{
-        File file = openFile(1);
+        File file = openFile(2);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-        File myObj = new File("C:\\Users\\qq227\\machine_code.txt");
+        File myObj = new File("C:\\Users\\zhz049\\Desktop\\CSE-141L\\machine_code.txt");
         if (myObj.createNewFile()) {
             System.out.println("File created: " + myObj.getName());
         } else {
             System.out.println("File already exists.");
         }
         String s = null;
-        FileWriter myWriter = new FileWriter("C:\\Users\\qq227\\machine_code.txt");
+        FileWriter myWriter = new FileWriter("C:\\Users\\zhz049\\Desktop\\CSE-141L\\machine_code.txt");
         while ((s = br.readLine()) != null){
-            myWriter.write(convertLine(s));
+            myWriter.write(convertLine(s)+"\n");
         }
         myWriter.close();
         br.close();
