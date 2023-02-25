@@ -15,7 +15,7 @@ module dut (
 	
 	lut LUT(
 		.label(read2),
-		.address(afterbranch)
+		.next_pc(afterbranch)
 	);
 	
 	pc programCounter(
@@ -103,14 +103,16 @@ module dut (
 		.format_input_b({1'b0}),
 		.Load_input_a(C),			  
         .Load_input_b(readdata),
-		.ALUSrc_input_a({5'b00000, instOut[2:0]}),
+		//sign extension
+		.ALUSrc_input_a({instOut[2], instOut[2], instOut[2], instOut[2], instOut[2], instOut[2:0]}),
 		.ALUSrc_input_b(read2),
 		.BranchSrc_input_a(A),
 		.BranchSrc_input_b(r1),
 		.Copy_input_a(M),
 		.Copy_input_b(read1),
 		.Move_input_a(aluresult),
-		.Move_input_b({2'b00, instOut[5:0]}),
+		//sign extension
+		.Move_input_b({instOut[5], instOut[5], instOut[5:0]}),
 		.BranchResult_input_a(pcAdd1),
 		.BranchResult_input_b(afterbranch),
 		.F(F),
