@@ -1,6 +1,6 @@
         move 30          //index = 30
         cpy D0 R5
-        lw R0 R5        //R0 = DataMem[index]
+while   lw R0 R5        //R0 = DataMem[index]
         move 0
         cpy D1 R1
         add R1 R5
@@ -22,7 +22,7 @@
         cpy D3 R3       //R3 = s0
         move 0
         cpy D0 R1       //R1 = 0
-        move [TODO]
+        move 1
         cpy D1 R0       //offset to the else case
         beqr R3 R0      //if R3==0, then go to else
 if      lw R0 R5
@@ -148,126 +148,58 @@ if      lw R0 R5
         cpy D3 R0       //R0 = location = s8_s4_s2_s1;
         move 15
         cpy D0 R1
-        move 28      //offset to loc15
-        cpy D0 R4
+        move 2      //offset to loc15
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==15
         move 14
         cpy D0 R1
-        move 28      //offset to loc14
-        cpy D0 R4
+        move 3      //offset to loc14
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==14
         move 13
         cpy D0 R1
-        move 28      //offset to loc13
-        cpy D0 R4
+        move 4      //offset to loc13
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==13
         move 12
         cpy D0 R1
-        move 28      //offset to loc12
-        cpy D0 R4
+        move 5      //offset to loc12
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==12
         move 11
         cpy D0 R1
-        move 28      //offset to loc11
-        cpy D0 R4
+        move 6      //offset to loc11
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==11
         move 10
         cpy D0 R1
-        move 28      //offset to loc10
-        cpy D0 R4
+        move 7      //offset to loc10
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==10
         move 9
         cpy D0 R1
-        move 28        //offset to loc9
-        cpy D0 R4
+        move 8        //offset to loc9
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==9
         move 7
         cpy D0 R1
-        move 28        //offset to loc7
-        cpy D0 R4
+        move 9        //offset to loc7
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==7
         move 6
         cpy D0 R1
-        move 27      //offset to loc6
-        cpy D0 R4
+        move 10      //offset to loc6
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
-        addi R3 1
-        cpy D2 R3
         beqr R0 R3      //if location==6
         move 5
         cpy D0 R1
-        move 27         //offset to loc5
-        cpy D0 R4
+        move 11         //offset to loc5
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==5
         move 3
         cpy D0 R1
-        move 27         //offset to loc3
-        cpy D0 R4
+        move 12         //offset to loc3
         cpy D0 R3
-        add R3 R4
-        cpy D1 R3
-        cpy D1 R4
-        add R3 R4
-        cpy D1 R3
         beqr R0 R3      //if location==3
 loc15   lw R0 R5
         move 1
@@ -277,7 +209,7 @@ loc15   lw R0 R5
         xor R0 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R0 xor (10000000)
-        move 141      //offset to end
+        move 13      //offset to end
         cpy D0 R3
         beqr R1 R3
 loc14   lw R0 R5
@@ -288,15 +220,7 @@ loc14   lw R0 R5
         xor R0 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R0 xor (01000000)
-        move 30      //offset to end
-        cpy D0 R3
-        cpy D0 R4
-        add R3 R4
-        cpy D0 R3 
-        cpy D0 R4
-        add R3 R4
-        cpy D0 R3
-        addi R3 2
+        move 13      //offset to end
         cpy D0 R3
         beqr R1 R3
 loc13   lw R0 R5
@@ -307,15 +231,7 @@ loc13   lw R0 R5
         xor R0 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R0 xor (00100000)
-        move 26      //offset to end
-        cpy D0 R3
-        cpy D0 R4
-        add R3 R4
-        cpy D0 R3 
-        cpy D0 R4
-        add R3 R4
-        cpy D0 R3
-        addi R3 -1
+        move 13      //offset to end
         cpy D0 R3
         beqr R1 R3
 loc12   lw R0 R5
@@ -326,15 +242,8 @@ loc12   lw R0 R5
         xor R0 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R0 xor (00010000)
-        move 28         //offset to end
+        move 13         //offset to end
         cpy D0 R3
-        cpy D0 R4
-        add R3 R4
-        cpy D1 R3
-        add R3 R4
-        cpy D1 R3
-        addi R3 1
-        cpy D2 R3
         beqr R1 R3
 loc11   lw R0 R5
         move 1
@@ -344,13 +253,8 @@ loc11   lw R0 R5
         xor R0 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R0 xor (00001000)
-        move 23         //offset to end
+        move 13         //offset to end
         cpy D0 R3
-        cpy D0 R4
-        add R3 R4
-        cpy D1 R3
-        add R3 R4
-        cpy D1 R3
         beqr R1 R3
 loc10   lw R0 R5
         move 1
@@ -360,13 +264,8 @@ loc10   lw R0 R5
         xor R0 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R0 xor (00000100)
-        move 23        //offset to end
+        move 13        //offset to end
         cpy D0 R3
-        cpy D0 R4
-        add R3 R4
-        cpy D1 R3
-        addi R3 1
-        cpy D2 R3
         beqr R1 R3
 loc9    lw R0 R5
         move 1
@@ -376,13 +275,8 @@ loc9    lw R0 R5
         xor R0 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R0 xor (00000001)
-        move 18      //offset to end
+        move 13      //offset to end
         cpy D0 R3
-        cpy D0 R4
-        add R3 R4
-        cpy D1 R3
-        addi R3 1
-        cpy D2 R3
         beqr R1 R3
 loc7    move 1
         cpy D0 R3
@@ -391,7 +285,7 @@ loc7    move 1
         xor R2 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R2 xor (10000000)
-        move 27      //offset to end
+        move 13      //offset to end
         cpy D0 R3
         beqr R1 R3
 loc6    move 1
@@ -401,7 +295,7 @@ loc6    move 1
         xor R2 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R2 xor (01000000)
-        move 17      //offset to end
+        move 13      //offset to end
         cpy D0 R3
         beqr R1 R3
 loc5    move 1
@@ -411,7 +305,7 @@ loc5    move 1
         xor R2 R3
         cpy D3 R0
         sw R0 R5        //DataMem[index] = R2 xor (00100000)
-        move 7      //offset to end
+        move 13      //offset to end
         cpy D0 R3
         beqr R1 R3
 loc3    move 1
@@ -426,6 +320,9 @@ end     move 1
         lsl R1 6
         cpy D3 R1 
         sw R1 R5
+        move 15        //offset to shift
+        cpy D0 R3
+        beqr R1 R3
 else    lw R0 R5
         lsr R0 4
         cpy D3 R3
@@ -549,7 +446,7 @@ else    lw R0 R5
         cpy D3 R0       //R0 = location = s8_s4_s2_s1;
         move 0
         cpy D0 R1
-        move 9          //offset to shift
+        move 15          //offset to shift
         cpy D0 R3
         beq R0 R3
 2_bit:  move 1
@@ -610,10 +507,10 @@ shift:  lw R0 R5        //R0 = DataMem[index]
         cpy D0 R2
         add R1 R2
         cpy D1 R1       //R1=60
-        move 3     //offset to exit
+        move 16     //offset to exit
         cpy D0 R3
         beqr R1 R3      //if index=60, exit
-        move [TODO]     //offset to while
+        move 17     //offset to while
         cpy D0 R3
         beqr R1 R3
 exit
