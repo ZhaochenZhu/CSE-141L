@@ -167,8 +167,10 @@ shift2_4:       lsl R0, 1
                 addi R2, 1      //index++
                 cpy D3, R5      //R5 = index
                 cpy D3, R2      //R2 = index
-                mov 32
+                mov 31
                 cpy D0, R1
+                addi R1 1
+                cpy D2 R1
                 mov 29           //offset to store2
                 cpy D0, R3
                 beqr R2, R3     //if R2(index)==32, go to store2

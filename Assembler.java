@@ -15,6 +15,9 @@ public class Assembler {
             case 3:
                 file = new File("C:\\Users\\qq227\\Desktop\\program3.txt");
                 break;
+            case 4:
+                file = new File("C:\\Users\\zhz049\\Desktop\\CSE-141L\\complete_program.txt");
+                break;
             default:
                 System.out.println("no such program!");
         }
@@ -118,17 +121,17 @@ public class Assembler {
     }
 
     public static void main(String[] args) throws Exception{
-        File file = openFile(2);
+        File file = openFile(4);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-        File myObj = new File("C:\\Users\\zhz049\\Desktop\\CSE-141L\\machine_code.txt");
+        File myObj = new File("C:\\Users\\zhz049\\Desktop\\CSE-141L\\machine_code_all.txt");
         if (myObj.createNewFile()) {
             System.out.println("File created: " + myObj.getName());
         } else {
             System.out.println("File already exists.");
         }
         String s = null;
-        FileWriter myWriter = new FileWriter("C:\\Users\\zhz049\\Desktop\\CSE-141L\\machine_code.txt");
+        FileWriter myWriter = new FileWriter("C:\\Users\\zhz049\\Desktop\\CSE-141L\\machine_code_all.txt");
         while ((s = br.readLine()) != null){
             myWriter.write(convertLine(s)+"\n");
         }
