@@ -1,0 +1,163 @@
+index = 30;
+while(index<60){
+    R0 = DataMem[index];
+    R1 = DataMem[index+1];
+    s8 = rxor(R0);
+    A = rxor(R1);
+    s0 = s8 xor A;
+    // 1 bit error
+    if(s0==1){
+        s4 = R0 >> 4;
+        s4 = s4 << 4;
+        temp = R1 >> 4;
+        s4 = s4 + temp;
+        s4 = rxor(s4);
+
+        s2 = R0 >> 6;
+        s2 = s2 << 6;
+        temp = R0 << 4;
+        temp = temp >> 6;
+        temp = temp << 4;
+        s2 = s2 + temp;
+        temp = R1 >> 6;
+        temp = temp << 2;
+        s2 = s2 + temp;
+        temp = R1 << 4;
+        temp = temp >> 6;
+        s2 = s2 + temp;
+        s2 = rxor(s2);
+
+        s1 = R0 >> 7;
+        s1 = s1 << 7;
+        temp = R0 << 2;
+        temp = temp >> 7;
+        temp = temp << 6;
+        s1 = s1 + temp;
+        temp = R0 << 4;
+        temp = temp >> 7;
+        temp = temp << 5;
+        s1 = s1 + temp;
+        temp = R0 << 6;
+        temp = temp >> 7;
+        temp = temp << 4;
+        s1 = s1 + temp;
+        temp = R1 >> 7;
+        temp = temp << 3;
+        s1 = s1 + temp;
+        temp = R1 << 2;
+        temp = temp >> 7;
+        temp = temp << 2;
+        s1 = s1 + temp;
+        temp = R1 << 4;
+        temp = temp >> 7;
+        temp = temp << 1;
+        s1 = s1 + temp;
+        temp = R1 << 6;
+        temp = temp >> 7;
+        s1 = s1 + temp;
+
+        location = s8_s4_s2_s1;
+        if(location==15){
+            DataMem[index] = R0 xor (10000000)
+        }
+        if(location==14){
+            DataMem[index] = R0 xor (01000000)
+        }
+        if(location==13){
+            DataMem[index] = R0 xor (00100000)
+        }
+        if(location==12){
+            DataMem[index] = R0 xor (00010000)
+        }
+        if(location==11){
+            DataMem[index] = R0 xor (00001000)
+        }
+        if(location==10){
+            DataMem[index] = R0 xor (00000100)
+        }
+        if(location==9){
+            DataMem[index] = R0 xor (00000010)
+        }
+        if(location==8){
+            //p8 incorrect, don't need to fix it
+        }
+        if(location==7){
+            DataMem[index+1] = R1 xor (10000000)
+        }
+        if(location==6){
+            DataMem[index+1] = R1 xor (01000000)
+        }
+        if(location==5){
+            DataMem[index+1] = R1 xor (00100000)
+        }
+        if(location==4){
+            // p4 incorrect
+        }
+        if(location==3){
+            DataMem[index+1] = R1 xor (00001000)
+        }
+        DataMem[index-30] = 01000000
+        // location = 2/1/0 --> parity bit incorrect, don't care        
+    }
+    // no error or 2 bit error
+    else{
+        s4 = R0 >> 4;
+        s4 = s4 << 4;
+        temp = R1 >> 4;
+        s4 = s4 + temp;
+        s4 = rxor(s4);
+
+        s2 = R0 >> 6;
+        s2 = s2 << 6;
+        temp = R0 << 4;
+        temp = temp >> 6;
+        temp = temp << 4;
+        s2 = s2 + temp;
+        temp = R1 >> 6;
+        temp = temp << 2;
+        s2 = s2 + temp;
+        temp = R1 << 4;
+        temp = temp >> 6;
+        s2 = s2 + temp;
+        s2 = rxor(s2);
+
+        s1 = R0 >> 7;
+        s1 = s1 << 7;
+        temp = R0 << 2;
+        temp = temp >> 7;
+        temp = temp << 6;
+        s1 = s1 + temp;
+        temp = R0 << 4;
+        temp = temp >> 7;
+        temp = temp << 5;
+        s1 = s1 + temp;
+        temp = R0 << 6;
+        temp = temp >> 7;
+        temp = temp << 4;
+        s1 = s1 + temp;
+        temp = R1 >> 7;
+        temp = temp << 3;
+        s1 = s1 + temp;
+        temp = R1 << 2;
+        temp = temp >> 7;
+        temp = temp << 2;
+        s1 = s1 + temp;
+        temp = R1 << 4;
+        temp = temp >> 7;
+        temp = temp << 1;
+        s1 = s1 + temp;
+        temp = R1 << 6;
+        temp = temp >> 7;
+        s1 = s1 + temp;
+
+        if(s8==1||s4==1||s2==1||s1==1){
+            // 2 bit error
+            DataMem[index-30] = 10000000
+        }
+        else{
+            // all correct;
+            //DataMem[index-30] = 00
+        }
+    }
+    index+=2;
+}
