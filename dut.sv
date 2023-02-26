@@ -1,7 +1,7 @@
 module dut (
 	input	clk,
 	input reset,
-	output done);
+	output logic done);
    
 	wire [11:0] nextpcvalue;
 	wire [11:0] pcOut;
@@ -12,6 +12,45 @@ module dut (
 	assign pcAdd1 = pcOut + 1;
 	
 	logic [11:0] afterbranch;
+	
+	wire[8:0] instOut;
+	
+	wire[2:0] ALUControl;
+	wire regwrite;
+	wire memwrite;
+	wire alusrc;
+	wire move;
+	wire copy;
+	wire load;
+	wire branch;
+	wire d;
+	wire destination;
+	
+	wire[5:0] operands;
+	
+	wire F;
+	
+	assign operands = {F, instOut[4:0]};
+	
+	wire[7:0] read1;
+	wire[7:0] read2;
+	wire[7:0] r1;
+	
+	wire zero;
+	
+	wire branchresult;
+	
+	assign branchresult = branch && zero;
+	
+	wire[7:0] readdata;
+	
+	wire[7:0] L;
+	wire[7:0] A;
+	wire[7:0] B;
+	wire[7:0] C;
+	wire[7:0] M;
+	
+	wire[7:0] aluresult;
 	
 	lut LUT(
 		.label(read2),
@@ -25,24 +64,13 @@ module dut (
 		.p_ct(pcOut)
 	);
 	
-	wire[8:0] instOut;
 	
 	instr_ROM instructionRom (
 		.InstAddress(pcOut),
 		.InstrOut(instOut)
 	);
 	
-	wire[2:0] ALUControl;
-	wire regwrite;
-	wire memwrite;
-	wire alusrc;
-	wire move;
-	wire copy;
-	wire load;
-	wire branch;
-	wire d;
-	wire destination;
-	
+
 	Decoder decoder  (
 		.INSTRUCTION(instOut),
 		.OP(ALUControl),
@@ -57,14 +85,6 @@ module dut (
 		.destination(destination)
 	);
 	
-	wire[5:0] operands;
-	
-	assign operands = {F, instOut[4:0]};
-	
-	wire[7:0] read1;
-	wire[7:0] read2;
-	wire[7:0] r1;
-	
 	reg_file regFile (
 		.clk(clk),
 		.RegWrite(regwrite),
@@ -77,19 +97,6 @@ module dut (
 		.data_outB(read2),
 		.R1(r1)
 	);
-	
-	wire branchresult;
-	
-	assign branchresult = branch && zero;
-	
-	wire[7:0] readdata;
-	
-	wire F;
-	wire[7:0] L;
-	wire[7:0] A;
-	wire[7:0] B;
-	wire[7:0] C;
-	wire[7:0] M;
 	
 	MultiMux multiMux (
 		.format(instOut[7]),
@@ -131,9 +138,6 @@ module dut (
 		.address(read2),
 		.read_data(readdata)
 	);
-	
-	wire zero;
-	wire[7:0] aluresult;
 	
 	ALU alu (
 		.OP(ALUControl),
