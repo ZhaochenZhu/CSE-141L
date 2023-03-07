@@ -15,7 +15,7 @@ module reg_file(
 					 data_outB,
 					 R1);
 					 
-logic [11:0] registers[8];
+	logic [11:0] registers[12];
 
 // combinational reads
 always_comb 
