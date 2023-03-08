@@ -151,7 +151,7 @@ module top_level (
 	);
 	
 	always_comb begin
-		if (pcOut == 183)
+		if (pcOut == 510)
 			done = 1;
 		else
 			done = 0;
