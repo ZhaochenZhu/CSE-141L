@@ -46,6 +46,7 @@ module ALU(
 		ZERO = 1;
 	else begin
 		ZERO = 0;
-		end
+	end
+end
 
 endmodule

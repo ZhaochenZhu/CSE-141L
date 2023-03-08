@@ -33,6 +33,8 @@ initial begin
     DUT.dm1.core[2*i+1]  = {5'b0,d1_in[i][11:9]};
     DUT.dm1.core[2*i]    =       d1_in[i][ 8:1];
   end
+  $display(DUT.dm1.core[0]);
+  $display(DUT.dm1.core[1]);
   #10ns reset   = 1'b1;          // pulse request to DUT
   #10ns reset   = 1'b0;
   wait(done);                   // wait for ack from DUT
@@ -49,7 +51,7 @@ initial begin
     $displayb ({d1_in[i][11:5],p8,d1_in[i][4:2],p4,d1_in[i][1],p2,p1,p0});
     $writeb  (DUT.dm1.core[31+2*i]);
     $displayb(DUT.dm1.core[30+2*i]);
-    if({DUT.dm1.core[31+2*i],DUT.dm1.core[30+2*i]} == {d1_in[i][11:5],p8,d1_in[i][4:2],p4,d1_in[i][1],p2,p1,p0}) begin
+    if({DUT.dm1.core[31+2*i],DUT.dm1.core[30+2*i]}  == {d1_in[i][11:5],p8,d1_in[i][4:2],p4,d1_in[i][1],p2,p1,p0}) begin
       $display(" we have a match!");
       score1++;
     end
