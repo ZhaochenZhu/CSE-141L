@@ -38,12 +38,14 @@ module ALU(
 	  3'b110	: OUT = INPUT_A >> INPUT_B;
 	  default	: OUT = INPUT_A;
 	endcase
-	
-	case(OUT)
-	  8'b0 :   ZERO = 1'b1;
-	  default : ZERO = 1'b0;
-	endcase
 
   end
+  
+  always_comb begin
+	if (INPUT_A - INPUT_B == 0)
+		ZERO = 1;
+	else begin
+		ZERO = 0;
+		end
 
 endmodule
