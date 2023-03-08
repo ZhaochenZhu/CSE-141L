@@ -42,13 +42,13 @@ module MultiMux(
 	 
 always_comb begin
 
-	F = (format) ? format_input_a : format_input_b;
-	L = (Load) ? Load_input_a : Load_input_b;
-	A = (ALUSrc) ? ALUSrc_input_a : ALUSrc_input_b;
-	B = (Branch) ? BranchSrc_input_a : BranchSrc_input_b;
-	C = (Copy) ? Copy_input_a : Copy_input_b;
-	M = (Move) ? Move_input_a : Move_input_b;
-	Br = (BranchResult) ? BranchResult_input_a : BranchResult_input_b;
+	F = (format) ? format_input_b : format_input_a;
+	L = (Load) ? Load_input_b : Load_input_a;
+	A = (ALUSrc) ? ALUSrc_input_b : ALUSrc_input_a;
+	B = (Branch) ? BranchSrc_input_b : BranchSrc_input_a;
+	C = (Copy) ? Copy_input_b : Copy_input_a;
+	M = (Move) ? Move_input_b : Move_input_a;
+	Br = (BranchResult) ? BranchResult_input_b : BranchResult_input_a;
 
 end
 	 

@@ -19,20 +19,6 @@ module Decoder(
 	 
   always_comb begin
   
-  //default case
-  OP = 3'b000;
- 
-  RegWrite   = 1'b0;
-  MemWrite   = 1'b0;
-  ALUSrc	 = 1'b0;
-  Move		 = 1'b0;
-  Copy		 = 1'b0;
-  Load		 = 1'b0;
-  branch	 = 1'b0;
-  D			 = 1'b0;
-  
-  destination = 4'b0;
-  
   case(INSTRUCTION[8:6])
 	//move
 	  3'b000 : begin
@@ -46,7 +32,7 @@ module Decoder(
 					branch = 1'b0;
 					D = 1'b0;
 					
-					destination = 4'b1000;
+					destination[3:0] = 4'b1000;
 				end
 	//load word
 	  3'b001 : begin
@@ -60,7 +46,7 @@ module Decoder(
 					branch = 1'b0;
 					D = 1'b0;
 					
-					destination = {1'b0, INSTRUCTION[5:3]}; 
+					destination[3:0] = {1'b0, INSTRUCTION[5:3]}; 
 				end
 	//store word
 	  3'b010 : begin
@@ -74,7 +60,7 @@ module Decoder(
 					branch = 1'b0;
 					D = 1'b0;
 					
-					destination = 4'b0000; 
+					destination[3:0] = 4'b0000; 
 				end
 	//reduction xor
 	  3'b011 : begin
@@ -88,7 +74,7 @@ module Decoder(
 					branch = 1'b0;
 					D = 1'b0;
 					
-					destination = {1'b0, INSTRUCTION[2:0]}; 
+					destination[3:0] = {1'b0, INSTRUCTION[2:0]}; 
 				end
 	//add & xor
 	  3'b110 : begin
@@ -105,7 +91,7 @@ module Decoder(
 									branch = 1'b0;
 									D = 1'b0;
 									
-									destination = 4'b1001; 
+									destination[3:0] = 4'b1001; 
 								end
 						//xor
 						1'b1:  begin
@@ -119,7 +105,7 @@ module Decoder(
 									branch = 1'b0;
 									D = 1'b0;
 									
-									destination = 4'b1011; 
+									destination[3:0] = 4'b1011; 
 								end
 					endcase
 				end
@@ -138,7 +124,7 @@ module Decoder(
 									branch = 1'b1;
 									D = 1'b0;
 									
-									destination = 4'b0000; 
+									destination[3:0] = 4'b0000; 
 									end
 						//copy from D register to R register
 						1'b1 :  begin
@@ -152,7 +138,7 @@ module Decoder(
 									branch = 1'b0;
 									D = 1'b1;
 									
-									destination = {1'b0, INSTRUCTION[2:0]}; 
+									destination[3:0] = {1'b0, INSTRUCTION[2:0]}; 
 									end
 					endcase
 				end
@@ -171,7 +157,7 @@ module Decoder(
 									branch = 1'b0;
 									D = 1'b0;
 									
-									destination = 4'b1010; 
+									destination[3:0] = 4'b1010; 
 									end
 						//logical shift left
 						1'b1 :  begin
@@ -185,7 +171,7 @@ module Decoder(
 									branch = 1'b0;
 									D = 1'b0;
 									
-									destination = 4'b1011; 
+									destination[3:0] = 4'b1011; 
 									end
 					endcase
 				end
@@ -204,7 +190,7 @@ module Decoder(
 									branch = 1'b0;
 									D = 1'b0;
 									
-									destination = 4'b1011; 
+									destination[3:0] = 4'b1011; 
 									end
 						//pattern match
 						1'b1 :  begin
@@ -218,10 +204,23 @@ module Decoder(
 									branch = 1'b0;
 									D = 1'b0;
 									
-									destination = 4'b1001; 
+									destination[3:0] = 4'b1001; 
 									end
 					endcase
 				end
+	  default : begin//default case
+				  OP = 3'b000;
+				 
+				  RegWrite   = 1'b0;
+				  MemWrite   = 1'b0;
+				  ALUSrc	 = 1'b0;
+				  Move		 = 1'b0;
+				  Copy		 = 1'b0;
+				  Load		 = 1'b0;
+				  branch	 = 1'b0;
+				  D			 = 1'b0;
+				  
+				  destination[3:0] = 4'b0000;
 	endcase
 	
   end

@@ -9,7 +9,7 @@ module data_mem(
   output logic[7:0]  read_data
   );
 
-  logic [7:0] core [256];
+  logic [7:0] core [256] = '{default: '0};
 
   always_comb
       read_data = core[address];

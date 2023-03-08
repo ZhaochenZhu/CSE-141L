@@ -16,7 +16,7 @@
 //   combinational (unclocked) ALU
 
 module ALU(
-  input [ 3:0] OP,				  // ALU opcode, part of microcode
+  input [ 2:0] OP,				  // ALU opcode, part of microcode
   
   input [ 7:0] INPUT_A,			  // data inputs
                INPUT_B,

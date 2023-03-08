@@ -39,7 +39,7 @@ module top_level (
 	
 	wire branchresult;
 	
-	assign branchresult = branch && zero;
+	assign branchresult = branch & zero;
 	
 	wire[7:0] readdata;
 	
@@ -51,6 +51,8 @@ module top_level (
 	
 	wire[7:0] aluresult;
 	
+	wire[11:0] nextpcvalue;
+	
 	lut LUT(
 		.label(read2),
 		.next_pc(afterbranch)
@@ -59,7 +61,7 @@ module top_level (
 	pc programCounter(
 		.clk(clk),
 		.reset(reset),
-		.next_p_ct(pcAdd1),
+		.next_p_ct(nextpcvalue),
 		.p_ct(pcOut)
 	);
 	
@@ -98,7 +100,7 @@ module top_level (
 	);
 	
 	MultiMux multiMux (
-		.format(instOut[7]),
+		.format(instOut[8]),
 		.Load(load),
 		.ALUSrc(alusrc),
 		.Branch(branch),
@@ -149,7 +151,7 @@ module top_level (
 	);
 	
 	always_comb begin
-		if (pcOut == 2000)
+		if (pcOut == 183)
 			done = 1;
 		else
 			done = 0;
