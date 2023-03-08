@@ -112,7 +112,7 @@ module top_level (
 		.Load_input_a(C),			  
         .Load_input_b(readdata),
 		//sign extension
-		.ALUSrc_input_a({instOut[2], instOut[2], instOut[2], instOut[2], instOut[2], instOut[2:0]}),
+		.ALUSrc_input_a({5'b00000, instOut[2:0]}),
 		.ALUSrc_input_b(read2),
 		.BranchSrc_input_a(A),
 		.BranchSrc_input_b(r1),
