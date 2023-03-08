@@ -221,6 +221,7 @@ module Decoder(
 				  D			 = 1'b0;
 				  
 				  destination[3:0] = 4'b0000;
+				end
 	endcase
 	
   end

@@ -23,7 +23,7 @@ module top_level (
 	wire load;
 	wire branch;
 	wire d;
-	wire destination;
+	wire[3:0] destination;
 	
 	wire[5:0] operands;
 	
