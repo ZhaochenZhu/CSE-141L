@@ -4,7 +4,7 @@ lw R7, R7       //R7 = DataMem[32]
 mov 0           //requirement a
 cpy D0, R6      //counter(R6) = 0
 cpy D0, R5      //index(R5) = 0
-lw R0, R5       //R0 = DataMem[index]                  while1:
+lw R0, R5       //R0 = DataMem[index]
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
 mov 0
@@ -18,7 +18,7 @@ add R2, R6
 cpy D1, R2      //R2 == R5(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1                           shift1_1:       
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -33,7 +33,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1                    shift1_2:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -48,7 +48,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1            //shift1_3:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -63,24 +63,26 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //indcounterex++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift1_4:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 mov 0
 cpy D0, R2
 add R2, R5
 cpy D1, R2      //R2 = R5 = index
 addi R2, 1      //index++
-cpy D3, R5      //R5 = index
-cpy D3, R2      //R2 = index
-mov 32
+cpy D2, R5      //R5 = index
+cpy D2, R2      //R2 = index
+mov 31
 cpy D0, R1
+addi R1 1
+cpy D2 R1
 mov 23           //offset to store1
 cpy D0, R3
 beqr R2, R3     //if R2(index)==32, go to store1
 mov 18         //offset to go back to while 
 cpy D0, R3     
 beqr R1, R3     //unconditional jump to while1
-mov 31             store1:
+mov 31
 cpy D0, R3
 mov 2
 cpy D0, R4
@@ -90,7 +92,7 @@ sw R6, R3
 mov 0           //requirement b
 cpy D0, R6      //counter = 0
 cpy D0, R5      //index = 0
-lw R0, R5       //R0 = DataMem[index]while2: 
+lw R0, R5       //R0 = DataMem[index]
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
 mov 0
@@ -107,7 +109,7 @@ cpy D2, R6      //R6 = counter
 mov 28          //offset to skip current iteration
 cpy D0, R3
 beqr R1, R3     //unconditional branch
-lsl R0, 1       shift2_1: 
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -125,7 +127,7 @@ cpy D2, R6      //R6 = counter
 mov 28          //offset to skip current iteration
 cpy D0, R3
 beqr R1, R3     //unconditional branch
-lsl R0, 1       shift2_2:  
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -143,7 +145,7 @@ cpy D2, R6      //R6 = counter
 mov 28          //offset to skip current iteration
 cpy D0, R3
 beqr R1, R3     //unconditional branch
-lsl R0, 1       shift2_3:  
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -158,15 +160,15 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //indcounterex++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift2_4: 
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 mov 0
 cpy D0, R2
 add R2, R5
 cpy D1, R2      //R2 = R5 = index
 addi R2, 1      //index++
-cpy D3, R5      //R5 = index
-cpy D3, R2      //R2 = index
+cpy D2, R5      //R5 = index
+cpy D2, R2      //R2 = index
 mov 31
 cpy D0, R1
 addi R1 1
@@ -177,7 +179,7 @@ beqr R2, R3     //if R2(index)==32, go to store2
 mov 24         //offset to go back to while
 cpy D0, R3
 beqr R1, R3     //unconditional jump to while2
-mov 31                   store2:  
+mov 31
 cpy D0, R3
 mov 3
 cpy D0, R4
@@ -201,7 +203,7 @@ add R2, R6
 cpy D1, R2      //R2 == R5(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_1a:  
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -216,7 +218,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_2a:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -233,13 +235,13 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_3a:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
 mov 0
 cpy D0, R1      //R1 = 0 
-mov 631           //offset to skip increment
+mov 31           //offset to skip increment
 cpy D0, R3
 addi R3, 2
 cpy D2, R3      //R3 = 33
@@ -250,11 +252,11 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //indcounterex++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_4a:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 mov 1
 cpy D0, R5      //R5 = index=1
-lw R3, R5                  while3:
+lw R3, R5
 lsr R3, 4       //R3 >> 4
 cpy D3, R3      //R3 = R3 >> 4
 add R0, R3      
@@ -276,7 +278,7 @@ add R2, R6
 cpy D1, R2      //R2 == R5(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_1b:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -295,7 +297,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_2b: 
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -314,7 +316,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_3b:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -333,7 +335,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //indcounterex++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_4b:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1        
 lw R0, R5       //R0 = DataMem[index]
 pm R0, R7
@@ -353,7 +355,7 @@ add R2, R6
 cpy D1, R2      //R2 == R5(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_1c: 
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -372,7 +374,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_2c:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -391,7 +393,7 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //counter++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_3c:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 pm R0, R7
 cpy D1, R2      //R2 = R0 pm R7
@@ -410,14 +412,14 @@ add R2, R6
 cpy D1, R2      //R2 == R6(counter)
 addi R2, 1      //indcounterex++
 cpy D2, R6      //R6 = counter
-lsl R0, 1       shift3_4c:
+lsl R0, 1       
 cpy D3, R0      //R0 = R0 << 1
 mov 0
 cpy D0, R2
 add R2, R5
 cpy D1, R2      //R2 = R5 = index
 addi R2, 1      //index++
-cpy D3, R5      //R5 = index
+cpy D2, R5      //R5 = index
 cpy D3, R2      //R2 = index
 mov 32
 cpy D0, R1
@@ -435,7 +437,7 @@ cpy D0, R4
 add R3 R4
 cpy D1 R3       //R3 = 34      
 beqr R1, R3     //unconditional jump to while3
-mov 31                 store3:
+mov 31
 cpy D0, R3
 mov 4
 cpy D0, R4
