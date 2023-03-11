@@ -1,0 +1,444 @@
+mov 32
+cpy D0, R7      //R7 = 32
+lw R7, R7       //R7 = DataMem[32]       
+mov 0           //requirement a
+cpy D0, R6      //counter(R6) = 0
+cpy D0, R5      //index(R5) = 0
+lw R0, R5       //R0 = DataMem[index]                  while1:
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 19           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift1(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R5(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1                           shift1_1:       
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 20           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift2(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1                    shift1_2:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 21           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift3(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1            //shift1_3:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 22           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift4(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //indcounterex++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift1_4:
+cpy D3, R0      //R0 = R0 << 1
+mov 0
+cpy D0, R2
+add R2, R5
+cpy D1, R2      //R2 = R5 = index
+addi R2, 1      //index++
+cpy D3, R5      //R5 = index
+cpy D3, R2      //R2 = index
+mov 32
+cpy D0, R1
+mov 23           //offset to store1
+cpy D0, R3
+beqr R2, R3     //if R2(index)==32, go to store1
+mov 18         //offset to go back to while 
+cpy D0, R3     
+beqr R1, R3     //unconditional jump to while1
+mov 31             store1:
+cpy D0, R3
+mov 2
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 33
+sw R6, R3
+mov 0           //requirement b
+cpy D0, R6      //counter = 0
+cpy D0, R5      //index = 0
+lw R0, R5       //R0 = DataMem[index]while2: 
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 25           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift1(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R5(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+mov 28          //offset to skip current iteration
+cpy D0, R3
+beqr R1, R3     //unconditional branch
+lsl R0, 1       shift2_1: 
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 26           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift2(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+mov 28          //offset to skip current iteration
+cpy D0, R3
+beqr R1, R3     //unconditional branch
+lsl R0, 1       shift2_2:  
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 27           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift3(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+mov 28          //offset to skip current iteration
+cpy D0, R3
+beqr R1, R3     //unconditional branch
+lsl R0, 1       shift2_3:  
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 28          //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift4(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //indcounterex++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift2_4: 
+cpy D3, R0      //R0 = R0 << 1
+mov 0
+cpy D0, R2
+add R2, R5
+cpy D1, R2      //R2 = R5 = index
+addi R2, 1      //index++
+cpy D3, R5      //R5 = index
+cpy D3, R2      //R2 = index
+mov 31
+cpy D0, R1
+addi R1 1
+cpy D2 R1
+mov 29           //offset to store2
+cpy D0, R3
+beqr R2, R3     //if R2(index)==32, go to store2
+mov 24         //offset to go back to while
+cpy D0, R3
+beqr R1, R3     //unconditional jump to while2
+mov 31                   store2:  
+cpy D0, R3
+mov 3
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 34
+sw R6, R3
+mov 0           //requirement c
+cpy D0, R6      //counter = 1
+cpy R0, R5      //index = 0 
+lw R0, R5       //R0 = DataMem[0]
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 30           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift1(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R5(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_1a:  
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+beqr R2, R3     //if R1(0)==R2, go to shift2(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_2a:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+addi R3, 1       //R3 = 32
+cpy D2, R3
+beqr R2, R3     //if R1(0)==R2, go to shift3(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_3a:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 631           //offset to skip increment
+cpy D0, R3
+addi R3, 2
+cpy D2, R3      //R3 = 33
+beqr R2, R3     //if R1(0)==R2, go to shift4(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //indcounterex++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_4a:
+cpy D3, R0      //R0 = R0 << 1
+mov 1
+cpy D0, R5      //R5 = index=1
+lw R3, R5                  while3:
+lsr R3, 4       //R3 >> 4
+cpy D3, R3      //R3 = R3 >> 4
+add R0, R3      
+cpy D0, R0      //R0 = DataMem[index-1][3:0]+DataMem[index][7:4]
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+mov 4
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 35
+beqr R2, R3     //if R1(0)==R2, go to shift1(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R5(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_1b:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+mov 5
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 36
+beqr R2, R3     //if R1(0)==R2, go to shift2(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_2b: 
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+mov 6
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 37
+beqr R2, R3     //if R1(0)==R2, go to shift3(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_3b:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31          //offset to skip increment
+cpy D0, R3
+mov 7
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 38
+beqr R2, R3     //if R1(0)==R2, go to shift4(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //indcounterex++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_4b:
+cpy D3, R0      //R0 = R0 << 1        
+lw R0, R5       //R0 = DataMem[index]
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+mov 8
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 39
+beqr R2, R3     //if R1(0)==R2, go to shift1(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R5(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_1c: 
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+mov 9
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 40
+beqr R2, R3     //if R1(0)==R2, go to shift2(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_2c:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+mov 10
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 41
+beqr R2, R3     //if R1(0)==R2, go to shift3(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //counter++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_3c:
+cpy D3, R0      //R0 = R0 << 1
+pm R0, R7
+cpy D1, R2      //R2 = R0 pm R7
+mov 0
+cpy D0, R1      //R1 = 0 
+mov 31           //offset to skip increment
+cpy D0, R3
+mov 11
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 42
+beqr R2, R3     //if R1(0)==R2, go to shift4(skip increment)
+mov 0
+cpy D0, R2
+add R2, R6
+cpy D1, R2      //R2 == R6(counter)
+addi R2, 1      //indcounterex++
+cpy D2, R6      //R6 = counter
+lsl R0, 1       shift3_4c:
+cpy D3, R0      //R0 = R0 << 1
+mov 0
+cpy D0, R2
+add R2, R5
+cpy D1, R2      //R2 = R5 = index
+addi R2, 1      //index++
+cpy D3, R5      //R5 = index
+cpy D3, R2      //R2 = index
+mov 32
+cpy D0, R1
+mov 31           //offset to store3
+cpy D0, R3
+mov 12
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 43
+beqr R2, R3     //if R2(index)==32, go to store3
+mov 31           //offset to go back to while
+cpy D0, R3
+mov 3
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 34      
+beqr R1, R3     //unconditional jump to while3
+mov 31                 store3:
+cpy D0, R3
+mov 4
+cpy D0, R4
+add R3 R4
+cpy D1 R3       //R3 = 35
+sw R6, R3
