@@ -12,7 +12,7 @@ module instr_ROM (
   logic[8:0] inst_rom[4096];
   
    initial							    // load the program
-    $readmemb("C:\\Users\\c3gu\\Downloads\\CSE-141L-program1\\program1-machinecode.txt",inst_rom);
+    $readmemb("C:\\Users\\c3gu\\Downloads\\CSE-141L-program2\\program2-machinecode.txt",inst_rom);
     
 // read from it
   always_comb InstrOut = inst_rom[InstAddress];
