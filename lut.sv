@@ -48,7 +48,7 @@ always_comb begin
 		40: next_pc = 376;
 		41: next_pc = 395;
 		42: next_pc = 414;
-		43: next_pc = 437;
+		43: next_pc = 441;
 		default: next_pc = 0;
 	endcase
 end
