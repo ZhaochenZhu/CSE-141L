@@ -49,7 +49,7 @@ initial begin
   end        	    
   #10ns reset   = 1'b1;      // pulse request to DUT
   #10ns reset   = 1'b0;
-  wait(ack);               // wait for ack from DUT
+  wait(done);               // wait for ack from DUT
   $display();
   $display("start program 3");
   $display();
