@@ -39,16 +39,16 @@ always_comb begin
 		31: next_pc = 222;
 		32: next_pc = 239;
 		33: next_pc = 256;
-		34: next_pc = 260;
-		35: next_pc = 282;
-		36: next_pc = 301;
-		37: next_pc = 320;
-		38: next_pc = 339;
-		39: next_pc = 359;
-		40: next_pc = 378;
-		41: next_pc = 397;
-		42: next_pc = 416;
-		43: next_pc = 443;
+		34: next_pc = 262;
+		35: next_pc = 284;
+		36: next_pc = 303;
+		37: next_pc = 322;
+		38: next_pc = 341;
+		39: next_pc = 361;
+		40: next_pc = 380;
+		41: next_pc = 399;
+		42: next_pc = 418;
+		43: next_pc = 445;
 		default: next_pc = 0;
 	endcase
 end
