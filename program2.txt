@@ -1,14 +1,12 @@
 move 30          //index = 30
 cpy D0 R5
 lw R0 R5        //R0 = DataMem[index]
-move 0
-cpy D1 R1
+move 1
+cpy D0 R1
 add R1 R5
 cpy D1 R1
-addi R1 1
-cpy D2 R1
 lw R2 R1        //R2 = DataMem[index+1]
-rxor R0 R3      //R3 = s8
+rxor R2 R3      //R3 = s8
 move -30
 cpy D0 R1
 add R1 R5       //R1 = index-30
@@ -16,21 +14,21 @@ cpy D1 R1
 lsl R3 3
 cpy D3 R3       //R3 = 0000_s8_000
 sw R3 R1        //DataMem[index-30] = 0000_s8_000
-rxor R2 R7      //R7 = A
-rxor R0 R3      //R3 = s8
+rxor R0 R7      //R7 = A
+rxor R2 R3      //R3 = s8
 xor R3 R7       
 cpy D3 R3       //R3 = s0
 move 0
 cpy D0 R1       //R1 = 0
 move 2
-cpy D0 R0       //offset to the else case
+cpy D1 R0       //offset to the else case
 beqr R3 R0      //if R3==0, then go to else
 lw R0 R5
-lsr R0 4
+lsl R2 4
 cpy D3 R3
 lsl R3 4
 cpy D3 R3
-lsr R2 4
+lsr R0 4
 cpy D3 R1
 xor R1 R3
 cpy D3 R3
@@ -46,11 +44,11 @@ xor R0 R3
 cpy D3 R3 
 sw R3 R1        //DataMem[index-30] = 0000_s8_s4_00
 lw R0 R5
-lsr R0 6
+lsr R2 6
 cpy D3 R3
 lsl R3 6
 cpy D3 R3
-lsl R0 4
+lsl R2 4
 cpy D3 R1
 lsr R1 6
 cpy D3 R1
@@ -58,13 +56,13 @@ lsl R1 4
 cpy D3 R1
 xor R1 R3
 cpy D3 R3
-lsr R2 6
+lsr R0 6
 cpy D3 R1
 lsl R1 2
 cpy D3 R1
 xor R1 R3
 cpy D3 R3
-lsl R1 4
+lsl R0 4
 cpy D3 R1
 lsr R1 6
 cpy D3 R1
@@ -81,64 +79,63 @@ cpy D3 R3
 xor R0 R3       
 cpy D3 R3 
 sw R3 R1        //DataMem[index-30] = 0000_s8_s4_s2_0
-lw R0 R5
-lsr R0 7
+lsr R2 7
 cpy D3 R3
 lsl R3 7
 cpy D3 R3
-lsl R0 2
+lsl R2 2
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 6
 cpy D3 R1 
-xor R1 R3
+xor R1 R3           //b11_b9
 cpy D3 R3
-lsl R0 4
+lsl R2 4
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 5
 cpy D3 R1
-xor R1 R3
+xor R1 R3           //b11_b9_b7
 cpy D3 R3
-lsl R0 6
+lsl R2 6
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 4
 cpy D3 R1
-xor R1 R3
+xor R1 R3           //b11_b9_b7_b5
 cpy D3 R3
-lsr R2 7
+lsr R0 7
 cpy D3 R1
 lsl R1 3
 cpy D3 R1
-xor R3 R1
+xor R3 R1           //b11_b9_b7_b5_b4
 cpy D3 R3
-lsl R2 2
+lsl R0 2
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 2
 cpy D3 R1
 xor R1 R3
-cpy D3 R3
-lsl R2 4
+cpy D3 R3           //b11_b9_b7_b5_b4_b2
+lsl R0 4
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 1
 cpy D3 R1
 xor R1 R3
-cpy D3 R3
-lsl R2 6
+cpy D3 R3           //b11_b9_b7_b5_b4_b2_b1
+lsl R0 6
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 xor R1 R3
-cpy D3 R3
-rxor R3 R3
+cpy D3 R3           //b11_b9_b7_b5_b4_b2_b1_p1
+rxor R3 R3          //s_1
 move -30
 cpy D0 R1
 add R1 R5       //R1 = index-30
@@ -168,12 +165,12 @@ cpy D0 R3
 beqr R0 R3      //if location==12
 move 11
 cpy D0 R1
-move 7 		//offset to loc11
+move 7      //offset to loc11
 cpy D0 R3
 beqr R0 R3      //if location==11
 move 10
 cpy D0 R1
-move 8		//offset to loc10
+move 8      //offset to loc10
 cpy D0 R3
 beqr R0 R3      //if location==10
 move 9
@@ -201,134 +198,159 @@ cpy D0 R1
 move 13         //offset to loc3
 cpy D0 R3
 beqr R0 R3      //if location==3
-lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 7
 cpy D3 R3
-xor R0 R3
+xor R2 R3
 cpy D3 R0
-sw R0 R5        //DataMem[index] = R0 xor (10000000)
-move 14      //offset to end
+cpy D0 R3
+add R3 R5
+cpy D1 R3
+sw R0 R3        //DataMem[index+1] = R2 xor (10000000)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
-lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 6
 cpy D3 R3
-xor R0 R3
+xor R2 R3
 cpy D3 R0
-sw R0 R5        //DataMem[index] = R0 xor (01000000)
-move 14      //offset to end
+cpy D0 R3
+add R3 R5
+cpy D1 R3
+sw R0 R3        //DataMem[index+1] = R2 xor (01000000)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
-lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 5
 cpy D3 R3
-xor R0 R3
+xor R2 R3
 cpy D3 R0
-sw R0 R5        //DataMem[index] = R0 xor (00100000)
-move 14      //offset to end
+cpy D0 R3
+add R3 R5
+cpy D1 R3
+sw R0 R3        //DataMem[index+1] = R2 xor (00100000)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
-lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 4
 cpy D3 R3
-xor R0 R3
+xor R2 R3
 cpy D3 R0
-sw R0 R5        //DataMem[index] = R0 xor (00010000)
+cpy D0 R3
+add R3 R5
+cpy D1 R3
+sw R0 R3        //DataMem[index+1] = R2 xor (00010000)
 move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
-lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 3
 cpy D3 R3
-xor R0 R3
+xor R2 R3
 cpy D3 R0
-sw R0 R5        //DataMem[index] = R0 xor (00001000)
+cpy D0 R3
+add R3 R5
+cpy D1 R3
+sw R0 R3        //DataMem[index+1] = R2 xor (00001000)
 move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
-lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 2
 cpy D3 R3
-xor R0 R3
+xor R2 R3
 cpy D3 R0
-sw R0 R5        //DataMem[index] = R0 xor (00000100)
-move 14        //offset to end
+cpy D0 R3
+add R3 R5
+cpy D1 R3
+sw R0 R3        //DataMem[index+1] = R2 xor (00000100)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
-lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 1
 cpy D3 R3
-xor R0 R3
+xor R2 R3
 cpy D3 R0
-sw R0 R5        //DataMem[index] = R0 xor (00000001)
-move 14      //offset to end
+cpy D0 R3
+add R3 R5
+cpy D1 R3
+sw R0 R3        //DataMem[index+1] = R2 xor (00000010)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
+lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 7
 cpy D3 R3
-xor R2 R3
-cpy D3 R0
-sw R0 R5        //DataMem[index] = R2 xor (10000000)
-move 14      //offset to end
+xor R0 R3
+cpy D3 R2
+sw R2 R5        //DataMem[index] = R0 xor (10000000)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
+lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 6
 cpy D3 R3
-xor R2 R3
-cpy D3 R0
-sw R0 R5        //DataMem[index] = R2 xor (01000000)
-move 14      //offset to end
+xor R0 R3
+cpy D3 R2
+sw R2 R5        //DataMem[index] = R0 xor (01000000)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
+lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 5
 cpy D3 R3
-xor R2 R3
-cpy D3 R0
-sw R0 R5        //DataMem[index] = R2 xor (00100000)
-move 14      //offset to end
+xor R0 R3
+cpy D3 R2
+sw R2 R5        //DataMem[index] = R0 xor (00100000)
+move 14         //offset to end
 cpy D0 R3
 beqr R1 R3
+lw R0 R5
 move 1
 cpy D0 R3
 lsl R3 3
 cpy D3 R3
-xor R2 R3
-cpy D3 R0
-sw R0 R5        //DataMem[index] = R2 xor (00100000)
+xor R0 R3
+cpy D3 R2
+sw R2 R5        //DataMem[index] = R0 xor (00001000)
+move 14         //offset to end
+cpy D0 R3
+beqr R1 R3
 move 1
 cpy D0 R1
 lsl R1 6
-cpy D3 R1 
-sw R1 R5
-move 16        //offset to shift
+cpy D3 R1
+move -30
+cpy D0 R2
+add R2 R5
+cpy D1 R2
+sw R1 R2        //DataMem[index-30] = 01000000
+move 16         //offset to shift
 cpy D0 R3
-beqr R1 R3
+beqr R1 R3      //go to shift
 lw R0 R5
-lsr R0 4
+lsl R2 4
 cpy D3 R3
 lsl R3 4
 cpy D3 R3
-lsr R2 4
+lsr R0 4
 cpy D3 R1
 xor R1 R3
 cpy D3 R3
@@ -344,11 +366,11 @@ xor R0 R3
 cpy D3 R3 
 sw R3 R1        //DataMem[index-30] = 0000_s8_s4_00
 lw R0 R5
-lsr R0 6
+lsr R2 6
 cpy D3 R3
 lsl R3 6
 cpy D3 R3
-lsl R0 4
+lsl R2 4
 cpy D3 R1
 lsr R1 6
 cpy D3 R1
@@ -356,13 +378,13 @@ lsl R1 4
 cpy D3 R1
 xor R1 R3
 cpy D3 R3
-lsr R2 6
+lsr R0 6
 cpy D3 R1
 lsl R1 2
 cpy D3 R1
 xor R1 R3
 cpy D3 R3
-lsl R1 4
+lsl R0 4
 cpy D3 R1
 lsr R1 6
 cpy D3 R1
@@ -379,64 +401,63 @@ cpy D3 R3
 xor R0 R3       
 cpy D3 R3 
 sw R3 R1        //DataMem[index-30] = 0000_s8_s4_s2_0
-lw R0 R5
-lsr R0 7
+lsr R2 7
 cpy D3 R3
 lsl R3 7
 cpy D3 R3
-lsl R0 2
+lsl R2 2
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 6
 cpy D3 R1 
-xor R1 R3
+xor R1 R3           //b11_b9
 cpy D3 R3
-lsl R0 4
+lsl R2 4
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 5
 cpy D3 R1
-xor R1 R3
+xor R1 R3           //b11_b9_b7
 cpy D3 R3
-lsl R0 6
+lsl R2 6
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 4
 cpy D3 R1
-xor R1 R3
+xor R1 R3           //b11_b9_b7_b5
 cpy D3 R3
-lsr R2 7
+lsr R0 7
 cpy D3 R1
 lsl R1 3
 cpy D3 R1
-xor R3 R1
+xor R3 R1           //b11_b9_b7_b5_b4
 cpy D3 R3
-lsl R2 2
+lsl R0 2
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 2
 cpy D3 R1
 xor R1 R3
-cpy D3 R3
-lsl R2 4
+cpy D3 R3           //b11_b9_b7_b5_b4_b2
+lsl R0 4
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 lsl R1 1
 cpy D3 R1
 xor R1 R3
-cpy D3 R3
-lsl R2 6
+cpy D3 R3           //b11_b9_b7_b5_b4_b2_b1
+lsl R0 6
 cpy D3 R1
 lsr R1 7
 cpy D3 R1
 xor R1 R3
-cpy D3 R3
-rxor R3 R3
+cpy D3 R3           //b11_b9_b7_b5_b4_b2_b1_p1
+rxor R3 R3          //s_1
 move -30
 cpy D0 R1
 add R1 R5       //R1 = index-30
@@ -444,58 +465,56 @@ cpy D1 R1
 lw R0 R1
 xor R0 R3       
 cpy D3 R0       //R0 = location = s8_s4_s2_s1;
-move 0
+move 0 
 cpy D0 R1
-move 16          //offset to shift
+move 16
 cpy D0 R3
-beq R0 R3
+beqr R0 R3
 move 1
 cpy D0 R1
 lsl R1 7
-cpy D0 R1
-move -30
+cpy D3 R1
+move -29
 cpy D0 R2
 add R2 R5
-cpy D1 R2
-sw R1 R2
+cpy D1 R2       //R2 = index-29 
+sw R1 R2        
 lw R0 R5        //R0 = DataMem[index]
-move 0 
+move 1 
 cpy D0 R1
 add R1 R5
 cpy D1 R1
-addi R1 1
-cpy D2 R1
 lw R1 R1        //R1 = DataMem[index+1]
-lsr R0 5
+lsr R1 5        //00000_b11_b10_b9
 cpy D3 R3
-move -30
+move -29
 cpy D0 R2
 add R2 R5   
-cpy D1 R6       //R6 = index-30
+cpy D1 R6       //R6 = index-29
 lw R2 R6
 xor R2 R3
 cpy D3 R3
 sw R3 R6
-lsr R0 1
+lsr R1 1
 cpy D3 R3
 lsl R3 4
-cpy D3 R3
-lsr R1 5
+cpy D3 R3       //b8_b7_b6_b5_0000
+lsr R0 5
 cpy D3 R2 
 lsl R2 1
-cpy D3 R2
+cpy D3 R2       //0000_b4_b3_b2_0
 xor R3 R2
 cpy D3 R3
-lsl R1 4
+lsl R0 4
 cpy D3 R2
 lsr R2 7
 cpy D3 R2
 xor R3 R2
 cpy D3 R3
-move 1
+move -1
 cpy D0 R0
 add R0 R6
-cpy D1 R0
+cpy D1 R0       //R0=index-30
 sw R3 R0
 move 2
 cpy D0 R0 
@@ -507,9 +526,9 @@ cpy D0 R1
 cpy D0 R2
 add R1 R2
 cpy D1 R1       //R1=60
-move 17     //offset to exit
+move 17         //offset to exit
 cpy D0 R3
-beqr R0 R3      //if index=60, exit
-move 2		//offset to while
+beqr R1 R3      //if index=60, exit
+move 2          //offset to while
 cpy D0 R3
 beqr R1 R3
