@@ -21,7 +21,7 @@ cpy D3 R3       //R3 = s0
 move 0
 cpy D0 R1       //R1 = 0
 move 2
-cpy D1 R0       //offset to the else case
+cpy D0 R0       //offset to the else case
 beqr R3 R0      //if R3==0, then go to else
 lw R0 R5
 lsl R2 4
