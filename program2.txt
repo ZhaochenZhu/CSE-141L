@@ -24,7 +24,7 @@ move 2
 cpy D0 R0       //offset to the else case
 beqr R3 R0      //if R3==0, then go to else
 lw R0 R5
-lsl R2 4
+lsr R2 4
 cpy D3 R3
 lsl R3 4
 cpy D3 R3
