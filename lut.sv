@@ -10,7 +10,7 @@ always_comb begin
 		2: next_pc = 352;
 		3: next_pc = 205;
 		4: next_pc = 218;
-		5: next_pc = 226;
+		5: next_pc = 231;
 		6: next_pc = 244;
 		7: next_pc = 257;
 		8: next_pc = 270;
