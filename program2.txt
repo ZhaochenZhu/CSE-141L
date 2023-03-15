@@ -107,7 +107,7 @@ lsl R1 4
 cpy D3 R1
 xor R1 R3           //b11_b9_b7_b5
 cpy D3 R3
-move 1
+move 0
 cpy D0 R0
 add R0 R5
 cpy D1 R0
