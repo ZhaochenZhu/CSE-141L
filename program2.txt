@@ -24,7 +24,7 @@ move 2
 cpy D0 R0       //offset to the else case
 beqr R3 R0      //if R3==0, then go to else
 lw R0 R5
-lsl R2 4
+lsr R2 4
 cpy D3 R3
 lsl R3 4
 cpy D3 R3
@@ -107,6 +107,11 @@ lsl R1 4
 cpy D3 R1
 xor R1 R3           //b11_b9_b7_b5
 cpy D3 R3
+move 0
+cpy D0 R0
+add R0 R5
+cpy D1 R0
+lw R0 R0
 lsr R0 7
 cpy D3 R1
 lsl R1 3
@@ -337,7 +342,7 @@ move 1
 cpy D0 R1
 lsl R1 6
 cpy D3 R1
-move -30
+move -29
 cpy D0 R2
 add R2 R5
 cpy D1 R2
@@ -528,7 +533,7 @@ add R1 R2
 cpy D1 R1       //R1=60
 move 17         //offset to exit
 cpy D0 R3
-beqr R1 R3      //if index=60, exit
-move 2          //offset to while
+beqr R0 R3      //if index=60, exit
+move 1          //offset to while
 cpy D0 R3
 beqr R1 R3
