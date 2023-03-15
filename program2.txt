@@ -342,7 +342,7 @@ move 1
 cpy D0 R1
 lsl R1 6
 cpy D3 R1
-move -30
+move -29
 cpy D0 R2
 add R2 R5
 cpy D1 R2
