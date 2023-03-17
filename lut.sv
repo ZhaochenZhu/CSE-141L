@@ -7,7 +7,7 @@ always_comb begin
 	case (label)
 		0: next_pc = 2;
 		1: next_pc = 2;
-		2: next_pc = 352;
+		2: next_pc = 355;
 		3: next_pc = 208;
 		4: next_pc = 221;
 		5: next_pc = 234;
