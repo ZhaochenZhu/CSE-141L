@@ -20,8 +20,8 @@ always_comb begin
 		12: next_pc = 318;
 		13: next_pc = 329;
 		14: next_pc = 340;
-		15: next_pc = 454;
-		16: next_pc = 486;
+		15: next_pc = 455;
+		16: next_pc = 487;
 		17: next_pc = 625;
 		18: next_pc = 8;
 		19: next_pc = 22;
