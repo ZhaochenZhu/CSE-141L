@@ -434,6 +434,7 @@ lsl R1 4
 cpy D3 R1
 xor R1 R3           //b11_b9_b7_b5
 cpy D3 R3
+lw R0 R5
 lsr R0 7
 cpy D3 R1
 lsl R1 3
