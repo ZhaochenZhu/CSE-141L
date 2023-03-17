@@ -203,6 +203,9 @@ cpy D0 R1
 move 13         //offset to loc3
 cpy D0 R3
 beqr R0 R3      //if location==3
+move 14
+cpy D0 R3
+beqr R1 R3      //if location==parity, go to end
 move 1
 cpy D0 R3
 lsl R3 7
